@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>крестики нолики</title>
+</head>
+<body>
+  <div class="game__title">крестики нолики</div>
+  <div class="game">
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__block"></div>
+    <div class="game__greeting">
+      <span class="game__text">победа!!!</span>
+    </div>
+  </div>
+  <button class="game__btn">новая игра</button>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .game__title {
+      text-transform: uppercase;
+      font-size: 36px;
+      font-weight: bolder;
+      margin-bottom: 20px;
+      color: tomato;
+    }
+
+    .game {
+      width: 30%;
+      height: 50%;
+      background-color: green;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .game__block {
+      width: calc(100% / 3);
+      height: calc(100% / 3);
+      border: 1px solid white;
+      cursor: pointer;
+      color: white;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 80px;
+      padding-top: 20px;
+    }
+
+    .game__greeting {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: none;
+    }
+
+    .game__text {
+      text-transform: uppercase;
+      color: tomato;
+      font-size: 70px;
+    }
+
+    .game__btn {
+      margin-top: 20px;
+      letter-spacing: 2px;
+      border-radius: 5px;
+      font-weight: bold;
+      padding: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      border: none;
+      background: transparent;
+      background-color: tomato;
+      color: white;
+    }
+  </style>
+
+  <script>
+    let btn = document.querySelector('.game__btn');
+    let attempt = 0;
+
+    document.querySelector('.game').onclick = (e) => {
+      if(e.target.className == 'game__block') {
+        if(attempt % 2 == 0) {
+          e.target.innerHTML = 'x';
+        }
+        else {
+          e.target.innerHTML = '0';
+        }  
+      }
+      attempt++
+      setTimeout(switchToWin, 200);
+    }
+
+    function switchToWin() {
+      let block = document.querySelectorAll('.game__block');
+      let txt = document.querySelector('.game__greeting');
+
+      if(block[0].innerHTML == 'x' && block[1].innerHTML == 'x' && block[2].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[3].innerHTML == 'x' && block[4].innerHTML == 'x' && block[5].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[6].innerHTML == 'x' && block[7].innerHTML == 'x' && block[8].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[0].innerHTML == 'x' && block[3].innerHTML == 'x' && block[6].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[1].innerHTML == 'x' && block[4].innerHTML == 'x' && block[7].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[2].innerHTML == 'x' && block[5].innerHTML == 'x' && block[8].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[0].innerHTML == 'x' && block[4].innerHTML == 'x' && block[8].innerHTML == 'x') txt.style.display = 'flex';
+      if(block[6].innerHTML == 'x' && block[4].innerHTML == 'x' && block[2].innerHTML == 'x') txt.style.display = 'flex';
+
+      if(block[0].innerHTML == '0' && block[1].innerHTML == '0' && block[2].innerHTML == '0') txt.style.display = 'flex';
+      if(block[3].innerHTML == '0' && block[4].innerHTML == '0' && block[5].innerHTML == '0') txt.style.display = 'flex';
+      if(block[6].innerHTML == '0' && block[7].innerHTML == '0' && block[8].innerHTML == '0') txt.style.display = 'flex';
+      if(block[0].innerHTML == '0' && block[3].innerHTML == '0' && block[6].innerHTML == '0') txt.style.display = 'flex';
+      if(block[1].innerHTML == '0' && block[4].innerHTML == '0' && block[7].innerHTML == '0') txt.style.display = 'flex';
+      if(block[2].innerHTML == '0' && block[5].innerHTML == '0' && block[8].innerHTML == '0') txt.style.display = 'flex';
+      if(block[0].innerHTML == '0' && block[4].innerHTML == '0' && block[8].innerHTML == '0') txt.style.display = 'flex';
+      if(block[6].innerHTML == '0' && block[4].innerHTML == '0' && block[2].innerHTML == '0') txt.style.display = 'flex';
+    }
+
+    btn.addEventListener('click', () => {
+      window.location.reload();
+    })
+
+    
+  </script>
+</body>
+</html>
